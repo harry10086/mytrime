@@ -131,7 +131,51 @@
 4. 返回到`设置`首页 -> `方案` -> `添加` -> 选择 `**双拼`。
 
 > [!TIP]
-> 修改完成后，App 会自动部署，如果没生效，可手动点击右上角逆时针图标 **「重新部署」**。
+> 修改完成后，App 会自动部署，如果没生效，可手动点击右上角逆时针旋转的图标 **「重新部署」**。
+
+---
+
+## 修改记录
+**2026.9.15：**
+### 一、增加每个按键面积（防误触）
+按键的物理触摸面积和间距主要由文件开头的 **`height`** 和 **`style`** 参数决定：
+1. **增大单行按键高度 (`key_height`)**：
+   - 当前主键盘按键高度 `jpgd4` 为 `48`，可调整为 `52 ~ 56`。
+2. **缩小按键缝隙 (`horizontal_gap` 与 `vertical_gap`)**：
+   - 将横向缝隙从 `3` 缩小为 `1.5 ~ 2`，竖向行距从 `7` 缩小为 `3 ~ 4`。缝隙缩减出来的空间会直接变成按键的实体面积。
+3. **配合增大总键盘锁定高度 (`keyboard_height`)**：
+   - 单键高度增加后，建议将锁定的 `keyboard_height` 从 `220` 提升至 `245 ~ 260`，防止键盘内容被底部裁剪。
+
+```yaml
+# 键盘高度与缝隙定义（约第 13~20 行）
+height:
+  1: &jpgd1 30
+  2: &jpgd2 24
+  3: &jpgd3 24
+  4: &jpgd4 54      # 【修改】主键盘单键高度由 48 调大至 54
+  5: &jpgd5 39.5
+  6: &hgap 1.5      # 【修改】横向缝隙由 3 缩减至 1.5（按键变宽）
+  7: &sgap 4        # 【修改】竖向缝隙由 7 缩减至 4（按键变高）
+
+style:
+  keyboard_height: 250   # 【修改】总键盘高度由 220 增大至 250
+  key_text_size: 24      # 【可选】按键字母字号由 22 增大至 24，视觉更清晰
+```
+
+### 二、将左下角按键改为「短按数字，长按符号」
+该按键位于 `preset_keyboards.default` 的第 4 行第 1 键（第 1059 行）。
+#### 原配置：
+```yaml
+- {click: liquid_keyboard_cn1, ascii: liquid_keyboard_ascii1, long_click: Keyboard_number, swipe_up: Keyboard_number, label_symbol: '123', width: 20, key_text_size: "20", symbol_text_size: 9, key_symbol_offset_x: 14, key_symbol_offset_y: 0, key_back_color: c3, key_text_color: tenter, key_border: 0}
+```
+
+#### 修改后配置：
+```yaml
+- {click: Keyboard_number, long_click: liquid_keyboard_cn1, ascii_long_click: liquid_keyboard_ascii1, swipe_up: liquid_keyboard_cn1, label: '123', label_symbol: '符', width: 20, key_text_size: "20", symbol_text_size: 9, key_symbol_offset_x: 14, key_symbol_offset_y: 0, key_back_color: c3, key_text_color: tenter, key_border: 0}
+```
+- **功能变更**：
+  - **短按**：直接切到数字键盘 (`Keyboard_number`)，主显示为 `123`；
+  - **长按 / 上滑**：切到符号键盘 (`liquid_keyboard_cn1`)，右上角角标提示为 `符`。
 
 ---
 
