@@ -971,7 +971,7 @@ tool_bar:
   ascii_mode_button: &ascii_mode_button
     foreground:
       option_styles: ["中", "En"] # 样式也可以为表，将根据 action 的 toggle 决定
-      font_size: 18  # 按钮字体大小
+      font_size: 14  # 按钮字体大小
     action: Mode_switch
 
   paste_button: &paste_button
@@ -1057,15 +1057,21 @@ preset_keyboards:
       - {click: BackSpace, width: 15, key_text_size: "18", key_back_color: c2, key_text_color: th1, key_border: 0}
     #  第四行
       - {click: Keyboard_number, long_click: liquid_keyboard_cn1, ascii_long_click: liquid_keyboard_ascii1, swipe_up: liquid_keyboard_cn1, label: '123', label_symbol: '符', width: 20, key_text_size: "20", symbol_text_size: 9, key_symbol_offset_x: 14, key_symbol_offset_y: 0, key_back_color: c3, key_text_color: tenter, key_border: 0}
-      - {click: ',', label: '，', long_click: '!', popup: ["!", "Theme_settings"], swipe_up: '!', swipe_down: '!', swipe_right: 'Theme_settings', key_back_color: bh4, key_text_color: th4}
-      - {click: space, ascii: space3, slide_cursor: false, long_click: , swipe_left: Page_Up, swipe_right: Page_Down, width: 40, key_text_size: "10", symbol_text_size: 9, key_symbol_offset_x: 35, key_back_color: bkg, key_text_color: th1}
-      - {click: '.', label: '。', long_click: '?', popup: ["?", "Keyboard_func", "Color_switch"], swipe_up: '?', swipe_down: '?', swipe_left: 'Color_switch', swipe_right: '', key_back_color: bh4, key_text_color: th4}
+      # 逗号键：左滑左移光标（Left），右滑保留进入设置
+      - {click: ',', label: '，', long_click: '!', popup: ["!", "Theme_settings"], swipe_left: Left, swipe_up: '!', swipe_down: '!', swipe_right: 'Theme_settings', key_back_color: bh4, key_text_color: th4}
+      # 空格键：长按中英文切换，左滑向候选词上翻页（Page_Up），右滑向候选词下翻页（Page_Down）
+      - {click: space, ascii: space3, label: '雾凇拼音', label_symbol: '中/En', ascii_label: '雾凇拼音', ascii_label_symbol: 'En/中', slide_cursor: false, long_click: Keyboard_letter1, ascii_long_click: Keyboard_default1, swipe_left: Page_Up, swipe_right: Page_Down, width: 40, key_text_size: "14", symbol_text_size: 9, key_symbol_offset_x: 35, key_back_color: bkg, key_text_color: th1}
+      # 句号键：左滑保留切换配色，右滑右移光标（Right）
+      - {click: '.', label: '。', long_click: '?', popup: ["?", "Keyboard_func", "Color_switch"], swipe_up: '?', swipe_down: '?', swipe_left: 'Color_switch', swipe_right: Right, key_back_color: bh4, key_text_color: th4}
       - {click: Return, composing: , long_click: , swipe_up: Escape, width: 20, key_text_size: "18", key_back_color: benter, key_text_color: tenter, key_border: 0}
 
   letter:
+    __include: preset_keyboards/default
     ascii_mode: 1
     lock: true
-    __include: preset_keyboards/default
+    __patch:
+      - 'keys/@32/long_click': 'Keyboard_default1'
+      - 'keys/@32/label_symbol': 'En/中'
 
 
   number:
@@ -1114,35 +1120,34 @@ preset_keyboards:
     vertical_gap: 3
     keys:
       # 第一行
-      - { click: select_all, key_back_color: bgn, key_text_size: "14",  , key_border: 0}
-      - { click: Home, key_text_size: "10", key_back_color: bgn,  , key_border: 0}
-      - { click: Up, key_text_size: "10", key_back_color: ,  }
-      - { click: End, key_text_size: "10", key_back_color: bgn, , key_border: 0}
-      - { click: Keyboard_last_lock, key_text_size: "20", key_back_color: bgn,  , key_border: 0}
+      - { click: select_all, key_back_color: bgn, key_text_size: 14, key_border: 0}
+      - { click: Home, key_text_size: 10, key_back_color: bgn, key_border: 0}
+      - { click: Up, key_text_size: 10 }
+      - { click: End, key_text_size: 10, key_back_color: bgn, key_border: 0}
+      - { click: Keyboard_last_lock, key_text_size: 20, key_back_color: bgn, key_border: 0}
       # 第二行
-      - { click: cut, key_back_color: bgn, key_text_size: "14",  , key_border: 0}
-      - { click: Left, key_text_size: "10", key_back_color: ,  }
+      - { click: cut, key_back_color: bgn, key_text_size: 14, key_border: 0}
+      - { click: Left, key_text_size: 10 }
       - {
           click: Shift_L1,
           label: ‹𝙸›,
-          key_text_size: "18",
-          key_back_color: ,
+          key_text_size: 18,
           hilited_key_back_color: hilited_off_sym_back_color,
         }
-      - { click: Right, key_text_size: "10", key_back_color: ,  }
-      - { click: Delete1, key_back_color: bgn, key_text_size: 14,  , key_border: 0}
+      - { click: Right, key_text_size: 10 }
+      - { click: Delete1, key_back_color: bgn, key_text_size: 14, key_border: 0}
       # 第三行
-      - { click: copy, key_back_color: bgn, key_text_size: "14",  , key_border: 0}
-      - { click: Tab1, key_back_color: bgn, key_text_size: 14,  , key_border: 0}
-      - { click: Down, key_text_size: "10", key_back_color: ,  }
-      - { click: select_H, key_back_color: bgn, key_text_size: 30, key_text_offset_y: -5 , key_border: 0}
-      - { click: BackSpace, key_text_size: 18, key_back_color: bgn,  , key_border: 0}
+      - { click: copy, key_back_color: bgn, key_text_size: 14, key_border: 0}
+      - { click: Tab1, key_back_color: bgn, key_text_size: 14, key_border: 0}
+      - { click: Down, key_text_size: 10 }
+      - { click: select_H, key_back_color: bgn, key_text_size: 30, key_text_offset_y: -5, key_border: 0}
+      - { click: BackSpace, key_text_size: 18, key_back_color: bgn, key_border: 0}
       # 第四行
-      - { click: paste, key_back_color: bgn, key_text_size: "14",  , key_border: 0}
-      - { click: Keyboard_number, key_back_color: bgn, key_text_size: 18,  , key_border: 0}
-      - { click: space2, key_back_color: bgn, key_text_size: 18, key_text_offset_y: ,  , key_border: 0}
-      - { click: liquid_keyboard_ascii1, key_back_color: bgn, key_text_size: 18,  , key_border: 0}
-      - { click: Return, key_text_size: 18, key_back_color: benter, key_text_color: tenter , key_border: 0}
+      - { click: paste, key_back_color: bgn, key_text_size: 14, key_border: 0}
+      - { click: Keyboard_number, key_back_color: bgn, key_text_size: 18, key_border: 0}
+      - { click: space2, key_back_color: bgn, key_text_size: 18, key_border: 0}
+      - { click: liquid_keyboard_ascii1, key_back_color: bgn, key_text_size: 18, key_border: 0}
+      - { click: Return, key_text_size: 18, key_back_color: benter, key_text_color: tenter, key_border: 0}
 
   func:
     name: 功能
@@ -4029,11 +4034,11 @@ preset_keys:
   Hide: {label: 隐藏, send: BACK}
   BackSpace: {label: ic@backspace-outline, preview: '⇦', repeatable: true, functional: false, send: BackSpace}
   BackSpace1: {label: 删除, preview: '⇦', repeatable: true, functional: false, send: BackSpace}
-  space: {label: '', slide_cursor: false, swipe_left: Page_Up, swipe_right: Page_Down, send: space}
+  space: {label: '雾凇拼音', slide_cursor: false, swipe_left: Page_Up, swipe_right: Page_Down, send: space}
  # space: {label: 'ic@resistor', slide_cursor: false, send: space}
   space1: {label: '空格', send: space}
   space2: {label: ic@keyboard-space, slide_cursor: true, send: space}  #用于数字键盘空格的展现形式
-  space3: {label: '_______', slide_cursor: false, swipe_left: Page_Up, swipe_right: Page_Down, send: space} #主键盘空格键的英文模式
+  space3: {label: '雾凇拼音', slide_cursor: false, swipe_left: Page_Up, swipe_right: Page_Down, send: space} #主键盘空格键的英文模式
   Clear: {label: 全清, send: Clear}
   Escape: {label: ic@keyboard-esc, functional: false, send: Escape}
   Escape1: {label: Esc, functional: false, send: Escape}
@@ -4103,7 +4108,7 @@ preset_keys:
   Keyboard_func1: { label: ' ', functional: false, send: Eisu_toggle, select: func }
   clipboard_window: { label: "剪贴", send: function, command: "clipboard_window" }
   # rime状态
-  Mode_switch: {toggle: ascii_mode, functional: false, send: Mode_switch, states: [ 中文, ABC ]}
+  Mode_switch: {toggle: ascii_mode, functional: false, send: Mode_switch, states: [ 中, En ]}
   Mode_switch1: {toggle: ascii_mode, functional: false, send: SWITCH_CHARSET, states: [ 中/a, a/中 ]}
   Zenkaku_Hankaku: {toggle: full_shape, send: Mode_switch, states: [ 半角, 全角 ]}
   Henkan: {toggle: simplification, send: Mode_switch, states: [ 汉字, 汉字 ]}

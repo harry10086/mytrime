@@ -1,21 +1,22 @@
 # 同文输入法经典主题+雾凇拼音+中英文释义
 ## 方案说明
 本方案支持 Android 系统 [同文输入法：https://github.com/osfans/trime](https://github.com/osfans/trime)：
-1. 雾凇拼音+中英文释义+Markdown 语法输入；
+
+1. 雾凇拼音 + 中英文释义 + Markdown 语法输入；
 2. 优化了主题，移除右下角中英文切换键，数字键和字符键合一，加长空格与回车键；
 3. 中英文释义纵向展示候选词时，空格键左右滑动为候选词翻页；
 4. 复制了几款经典输入法的主题配色：苹果，搜狗，微信等；
 
-## 雾凇拼音+中英文释义+Markdown 语法输入
+## 雾凇拼音 + 中英文释义 + Markdown 语法输入
 [为雾凇拼音添加中英互译释义：https://mianao.info/add-chinese-english-translation-to-rime-ice/](https://mianao.info/add-chinese-english-translation-to-rime-ice/) 
 这里介绍了雾凇拼音添加中英文释义，Markdown 语法输入。
 
 [同文输入法](https://github.com/osfans/trime) 是支持 RIME 的开源中文输入法，之前我改的雾凇拼音可以直接移植到同文输入法中，虽然体验稍有差异。
 
-这是同文输入法 APP 的文件目录结构，`rime` 文件夹会自动同步外部配置的用户文件夹内容，**切记不要动去另外一个文件夹 `shared` 的文件**：
+这是同文输入法 APP 的文件目录结构，`rime` 文件夹会同步外部配置的用户文件夹内容，**切记不要动去另外一个文件夹 `shared` 的文件**：
 ![data](https://github.mianao.info/https://raw.githubusercontent.com/harry10086/picx-images-hosting/master/Trime/data.webp)
 
-在 Android 系统根目录新建文件夹 rime，根据需要将修改好的文件复制到目录下：
+在 Android 系统根目录新建文件夹 `rime`，根据需要将修改好的文件复制到目录下：
 ![rime](https://github.mianao.info/https://raw.githubusercontent.com/harry10086/picx-images-hosting/master/Trime/rime.webp)
 
 **文件列表：**
@@ -37,7 +38,7 @@
 - **en_dicts/**             # 词库目录
 
 ## 主题修改
-主题来自 fork 的 `chwt163/mytrime` 几个主题的其中一个： `classic.trime.yaml` ，我根据自己的需求和审美做了一些修改：
+主题来自 fork 的 `chwt163/mytrime` 几个主题的其中一个：`classic.trime.yaml`，我根据自己的需求做了一些修改：
 ![color](https://github.mianao.info/https://raw.githubusercontent.com/harry10086/picx-images-hosting/master/Trime/color.webp)
 
 1. 移除右下角中英文切换键，数字键和字符键合一，加长空格与回车键
@@ -48,7 +49,7 @@
 - **角标提示**：添加了小角标 `label_symbol: '123'`，主图标为符号图标，右上角带 `123` 提示，直观表明长按/上滑的功能。
 
 > [!TIP]
-> 去除右下角中英切换键后，如需在中英文之间切换，可直接使用第三行最左侧的 **`Shift` 键**（标准 Rime / 同文切换方式）。
+> 空格键已添加 **`中/En`** 切换功能，长按可直接切换为纯英文模式（直接输出英文字符，不上预选区）；第三行最左侧的 **`Shift` 键** 也可用于快捷切换在预选区输入大写英文字母。
 
 2. 增大候选词上方拼音字母区的高度与触控热区
 - **原因**：同文输入法的预编辑区（`preedit`）位于键盘顶部边缘，原配置中的字体大小仅为 `font_size: 16`，由于视图采用紧凑排版，导致字母高度仅有约 20~24dp。手指触摸时稍有偏上就会超出输入法窗口范围，从而点击到外部应用。
@@ -79,14 +80,13 @@
   ```
 
 4. 减小键盘下方多余空白
-
-① 主题配置层面（已写入配置）
+* 主题配置层面（已写入配置）
 在 `style` 节点中明确将底部边距锁为 0（第 58~59 行）：
 ```yaml
   keyboard_padding_bottom: 0 # 锁定竖屏键盘底边距为0（消除主题层面的底部垫高）
   keyboard_padding_land_bottom: 0 # 锁定横屏键盘底边距为0
 ```
-② 同文 App 全面屏手势设置
+* 同文 App 全面屏手势设置
 在现代 Android 全面屏手机上，输入法底部有一大截空白通常是**系统手势底栏垫高（防误触边距）**导致的。若修改主题后底部依然偏高，建议在手机上的同文输入法 App 内做如下设置：
   * 打开同文输入法 App -> **设置** -> **高级设置** -> 开启 **「忽略系统手势边衬区」**。
   ![advanced](https://github.mianao.info/https://raw.githubusercontent.com/harry10086/picx-images-hosting/master/Trime/advanced.webp)
@@ -103,7 +103,8 @@
   - 微信暗黑
 
 ## 使用方法
-1. 复制 `rime` 文件夹到 Android 手机根目录（根据需要，比如我只用全拼，其他 double 的文件就不复制过去）；
+1. 克隆项目后复制 `rime` 文件夹到 Android 手机根目录（根据自己的需求，比如我只用全拼，其他 `double` 的文件就不复制过去）；
+![rime](https://github.mianao.info/https://raw.githubusercontent.com/harry10086/picx-images-hosting/master/Trime/rime.webp)
 
 2. 打开 同文输入法 -> `设置` -> `配置` -> 将用户文件夹路径指向前面复制的 rime 文件夹，接着点击 `立即同步用户数据`；
 ![config](https://github.mianao.info/https://raw.githubusercontent.com/harry10086/picx-images-hosting/master/Trime/config.webp)
@@ -116,27 +117,24 @@
 
 ![colors](https://github.mianao.info/https://raw.githubusercontent.com/harry10086/picx-images-hosting/master/Trime/colors.webp)
 
-5. 根据需要，在 `设置`首页 -> 进入 `候选窗口` -> `候选词窗口`，`设置候选词列表布局`，`候选词窗口位置`；
+5. 根据需要，在 `设置`首页 -> 进入 `候选窗口` -> `候选词窗口`，`设置候选词列表布局`，`候选词窗口位置` 等；
 ![candidate](https://github.mianao.info/https://raw.githubusercontent.com/harry10086/picx-images-hosting/master/Trime/candidate.webp)
 
 **添加双拼方案**：
-双拼方案在手机上我测试是无法正常部署（AI 说原因是因为手机在首次编译庞大的双拼 prism 时，极易因内存不足（OOM）或超时导致后台编译静默失败/中断），需要先在电脑端预编译后再拷入手机：
-1. 在电脑端配置好你的雾凇拼音文件，并勾选你需要的双拼方案，重新部署。
-2. 部署完成后，在电脑的用户目录里 build 文件夹中会生成以下二进制文件：
+双拼方案在手机上我测试是无法正常部署，需要先把双拼相关的文件复制到电脑端预编译后再拷入手机文件夹：
+1. 在电脑端配置好的雾凇拼音文件，并勾选需要的双拼方案，重新部署。
+2. 部署完成后，在电脑的用户目录里 `build` 文件夹中会生成以下二进制文件：
 
-> double_pinyin_\*\.bin
+> double_pinyin_*.*.bin
 > double_pinyin_*.schema.yaml
 
-3. 将所有文件复制到手机 APP 的 `files/rime/build/` 目录里，再在手机上打开 `Trime` 点击**重新部署**。
+3. 将以上文件复制到手机 APP 的 `Android/data/com.osfans.trimefiles/rime/build/` 目录里，再在手机上打开 `Trime` 点击**重新部署**。
 4. 返回到`设置`首页 -> `方案` -> `添加` -> 选择 `**双拼`。
-
-> [!TIP]
-> 修改完成后，App 会自动部署，如果没生效，可手动点击右上角逆时针旋转的图标 **「重新部署」**。
 
 ---
 
 ## 修改记录
-**2026.9.15：**
+**2026.9.17：**
 ### 一、增加每个按键面积（防误触）
 按键的物理触摸面积和间距主要由文件开头的 **`height`** 和 **`style`** 参数决定：
 1. **增大单行按键高度 (`key_height`)**：
@@ -176,6 +174,26 @@ style:
 - **功能变更**：
   - **短按**：直接切到数字键盘 (`Keyboard_number`)，主显示为 `123`；
   - **长按 / 上滑**：切到符号键盘 (`liquid_keyboard_cn1`)，右上角角标提示为 `符`。
+
+### 三、修改逗号和句号左右滑动功能
+#### 原配置：
+```yaml
+- {click: ',', label: '，', long_click: '!', popup: ["!", "Theme_settings"], swipe_up: '!', swipe_down: '!', swipe_right: 'Theme_settings', key_back_color: bh4, key_text_color: th4}
+- {click: '.', label: '。', long_click: '?', popup: ["?", "Keyboard_func", "Color_switch"], swipe_up: '?', swipe_down: '?', swipe_left: 'Color_switch', swipe_right: '', key_back_color: bh4, key_text_color: th4}
+```
+
+#### 修改后配置：
+```yaml
+- {click: ',', label: '，', long_click: '!', popup: ["!", "Theme_settings"], swipe_left: Left, swipe_up: '!', swipe_down: '!', swipe_right: 'Theme_settings', key_back_color: bh4, key_text_color: th4}
+- {click: '.', label: '。', long_click: '?', popup: ["?", "Keyboard_func", "Color_switch"], swipe_up: '?', swipe_down: '?', swipe_left: 'Color_switch', swipe_right: Right, key_back_color: bh4, key_text_color: th4}
+```
+- **功能变更**：
+  - **逗号键**：左滑左移光标（Left），右滑保留进入设置
+  - **句号键**：左滑保留切换配色，右滑右移光标（Right）
+
+### 四、修改拆字反查功能
+增加 `Uu` 按键，用于拆字反查。因为雾凇拼音原始的 `uU` 无法在手机上使用。
+
 
 ---
 

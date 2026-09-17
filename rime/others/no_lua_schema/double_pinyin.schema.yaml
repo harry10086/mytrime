@@ -62,7 +62,8 @@ engine:
     - ascii_segmentor
     - matcher
     - abc_segmentor
-    - affix_segmentor@radical_lookup  # 部件拆字自定义 tag
+    - affix_segmentor@radical_lookup     # 自定义 tag (uU 前缀)
+    - affix_segmentor@radical_lookup_Uu  # 自定义 tag (Uu 前缀)
     - punct_segmentor
     - fallback_segmentor
   translators:
@@ -198,6 +199,11 @@ radical_lookup:
   tips: "  〔拆字〕"
   comment_format:
     - erase/^.*$//
+radical_lookup_Uu:
+  tag: radical_lookup
+  prefix: "Uu"
+  tips: "  〔拆字〕"
+
 # 部件拆字滤镜
 radical_reverse_lookup:
   tags: [ radical_lookup ]
@@ -215,7 +221,7 @@ recognizer:
   import_preset: default                # 从 default.yaml 继承通用的
   patterns:                             # 再增加方案专有的：
     punct: "^V([0-9]|10|[A-Za-z]+)$"    # 响应 symbols_caps_v.yaml 的 symbols
-    radical_lookup: "^uU[a-z]+$"        # 响应部件拆字的反查，触发前缀与 radical_lookup/prefix 匹配
+    radical_lookup: "^(uU|Uu)[a-z]+$"        # 响应部件拆字的反查，触发前缀与 radical_lookup/prefix 匹配
 
 
 # 从 default 继承快捷键

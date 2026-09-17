@@ -9,6 +9,7 @@
 基础：自定义短语	rime_ice	ig{space}	一个
 基础：Emoji输入	rime_ice	nihao{2}	👋
 基础：uU拆字反查	rime_ice	uUrenrenren{space}	众
+基础：Uu拆字反查	rime_ice	Uurenrenren{space}	众
 基础：v键符号输入	rime_ice	v1{space}	一
 插件：英文全大写	rime_ice	HELLO{space}	HELLO
 插件：英文首字母大写	rime_ice	Hello{space}	Hello
