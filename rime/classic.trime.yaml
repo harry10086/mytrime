@@ -69,7 +69,7 @@ style:
   preview_offset: -32 #按键提示纵向偏移
   preview_text_size: 40 #按键提示字号
   proximity_correction: true #打开按键纠错
-  reset_ascii_mode_on_focus_change: false #焦点变更弹起输入法软键盘时，重置 ascii_mode
+  reset_ascii_mode_on_focus_change: true #焦点变更弹起输入法软键盘时，重置 ascii_mode 为中文
   round_corner: *round1 #按键圆角半径
   shadow_radius: 0.0 #按键阴影半径
   symbol_font: symbol.ttf #符号字体
@@ -1060,7 +1060,7 @@ preset_keyboards:
       # 逗号键：左滑左移光标（Left），右滑保留进入设置
       - {click: ',', label: '，', long_click: '!', popup: ["!", "Theme_settings"], swipe_left: Left, swipe_up: '!', swipe_down: '!', swipe_right: 'Theme_settings', key_back_color: bh4, key_text_color: th4}
       # 空格键：长按中英文切换，左滑向候选词上翻页（Page_Up），右滑向候选词下翻页（Page_Down）
-      - {click: space, ascii: space3, label: '雾凇拼音', label_symbol: '中/En', ascii_label: '雾凇拼音', ascii_label_symbol: 'En/中', slide_cursor: false, long_click: Keyboard_letter1, ascii_long_click: Keyboard_default1, swipe_left: Page_Up, swipe_right: Page_Down, width: 40, key_text_size: "14", symbol_text_size: 9, key_symbol_offset_x: 38, key_back_color: bkg, key_text_color: th1}
+      - {click: space, ascii: space3, label: '雾凇拼音', label_symbol: '中/En', ascii_label: '雾凇拼音', ascii_label_symbol: 'En/中', slide_cursor: false, long_click: Mode_switch, ascii_long_click: Mode_switch, swipe_left: Page_Up, swipe_right: Page_Down, width: 40, key_text_size: "14", symbol_text_size: 9, key_symbol_offset_x: 38, key_back_color: bkg, key_text_color: th1}
       # 句号键：左滑保留切换配色，右滑右移光标（Right）
       - {click: '.', label: '。', long_click: '?', popup: ["?", "Keyboard_func", "Color_switch"], swipe_up: '?', swipe_down: '?', swipe_left: 'Color_switch', swipe_right: Right, key_back_color: bh4, key_text_color: th4}
       - {click: Return, composing: , long_click: , swipe_up: Escape, width: 20, key_text_size: "18", key_back_color: benter, key_text_color: tenter, key_border: 0}

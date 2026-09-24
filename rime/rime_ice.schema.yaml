@@ -324,8 +324,8 @@ key_binder:
   search: "`"             # 辅码引导符，要添加到 speller/alphabet
   bindings:
     - { when: always, accept: "Control+Shift+E", toggle: dict_comment }  # 快捷键开关词典释义
-    - { when: has_menu, accept: comma, send: Page_Up }                   # 逗号上一页
-    - { when: has_menu, accept: period, send: Page_Down }                 # 句号下一页
+#    - { when: has_menu, accept: comma, send: Page_Up }                   # 逗号上一页
+#    - { when: has_menu, accept: period, send: Page_Down }                 # 句号下一页
     - { when: has_menu, accept: minus, send: Page_Up }                    # 减号上一页
     - { when: has_menu, accept: equal, send: Page_Down }                  # 等号下一页
 
